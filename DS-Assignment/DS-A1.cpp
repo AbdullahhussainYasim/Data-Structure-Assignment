@@ -450,7 +450,7 @@ public:
 
 		bool operator!=(const Iterator& other)
 		{
-			return !(*this == other);
+			return !(this->ptr == other.ptr);
 		}
 
 		G& operator*()
