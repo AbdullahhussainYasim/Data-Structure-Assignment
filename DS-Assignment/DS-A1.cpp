@@ -422,7 +422,7 @@ public:
 
 
 template <typename D>
-class dynamicarray
+class Vector
 {
 private:
 	D* arr;
@@ -442,13 +442,13 @@ private:
 	}
 public:
 
-	dynamicarray()
+	Vector()
 	{
 		this->size = 0;
 		this->capacity = 1;
 		arr = new D[capacity]{};
 	}
-	~dynamicarray()
+	~Vector()
 	{
 		delete[] arr;
 	}
@@ -486,7 +486,7 @@ public:
 		}
 	}
 
-	friend ostream& operator<<(ostream& out, const dynamicarray& Other)
+	friend ostream& operator<<(ostream& out, const Vector& Other)
 	{
 		cout << "\nArray: \n";
 		for (int i = 0; i < Other.size; i++)
@@ -502,6 +502,7 @@ public:
 
 
 };
+
 
 
 
@@ -736,7 +737,7 @@ int main()
 	}
 	if (choice == 3)
 	{
-		dynamicarray<int> a;
+		Vector<int> a;
 		cout << "1. Insert" << endl;
 		cout << "2. To get element" << endl;
 		cout << "3. To set element" << endl;
