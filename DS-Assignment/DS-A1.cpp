@@ -443,6 +443,7 @@ public:
 			return temp;
 		}
 
+
 		bool operator==(const Iterator& other)
 		{
 			return this->ptr == other.ptr;
@@ -459,6 +460,42 @@ public:
 		}
 	};
 
+	class ReverseIterator
+	{
+	private:
+		G* ptr;
+
+		ReverseIterator(G* ptr)
+		{
+			this->ptr = ptr;
+		}
+	public:
+		ReverseIterator& operator++()
+		{
+			ptr--;
+			return *this;
+		}
+
+		const ReverseIterator operator++(int)
+		{
+			ReverseIterator temp = *this;
+			ptr--;
+			return temp;
+		}
+
+		bool operator==(const ReverseIterator& other)
+		{
+			return this->ptr == other.ptr;
+		}
+
+		bool operator!=(const ReverseIterator& other)
+		{
+			return !(this->ptr == other.ptr);
+		}
+	};
+
+
+
 
 	Iterator begin()
 	{
@@ -469,6 +506,17 @@ public:
 	{
 		return Iterator(arr + count);
 	}
+
+	ReverseIterator rbegin()
+	{
+		return ReverseIterator(arr + count - 1);
+	}
+
+	ReverseIterator rend()
+	{
+		return ReverseIterator(arr - 1);
+	}
+
 
 };
 
