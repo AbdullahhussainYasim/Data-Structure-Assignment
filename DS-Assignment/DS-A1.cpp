@@ -417,6 +417,58 @@ public:
 		cout << endl;
 	}
 
+	
+
+
+	class Iterator
+	{
+	private:
+		G* ptr;
+
+		Iterator(G* ptr)
+		{
+			this->ptr = ptr;
+		}
+	public:
+
+		Iterator& operator++()
+		{
+			ptr++;
+			return *this;
+		}
+		const Iterator operator++(int)
+		{
+			Iterator temp = *this;
+			ptr++;
+			return temp;
+		}
+
+		bool operator==(const Iterator& other)
+		{
+			return this->ptr == other.ptr;
+		}
+
+		bool operator!=(const Iterator& other)
+		{
+			return !(*this == other);
+		}
+
+		G& operator*()
+		{
+			return *ptr;
+		}
+	};
+
+
+	Iterator begin()
+	{
+		return Iterator(arr);
+	}
+
+	Iterator end()
+	{
+		return Iterator(arr + count);
+	}
 
 };
 
