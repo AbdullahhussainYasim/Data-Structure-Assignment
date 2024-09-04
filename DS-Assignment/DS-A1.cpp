@@ -406,6 +406,10 @@ public:
 		}
 		throw exception("Value not found");
 	}
+	int getsize()
+	{
+		return size;
+	}
 	void print()
 	{
 		for (int i = 0; i < count; i++)
@@ -442,6 +446,19 @@ public:
 			return temp;
 		}
 
+		Iterator& operator--()
+		{
+			ptr--;
+			return *this;
+		}
+
+		const Iterator operator--(int)
+		{
+			Iterator temp = *this;
+			ptr--;
+			return temp;
+		}
+
 
 		bool operator==(const Iterator& other)
 		{
@@ -459,7 +476,7 @@ public:
 		}
 	};
 
-	class ReverseIterator
+	/*class ReverseIterator
 	{
 	private:
 		G* ptr;
@@ -496,7 +513,7 @@ public:
 		{
 			return *ptr;
 		}
-	};
+	};*/
 
 
 
@@ -511,14 +528,14 @@ public:
 		return Iterator(arr + count);
 	}
 
-	ReverseIterator rbegin()
+	Iterator rbegin()
 	{
-		return ReverseIterator(arr + count - 1);
+		return Iterator(arr + count - 1);
 	}
 
-	ReverseIterator rend()
+	Iterator rend()
 	{
-		return ReverseIterator(arr - 1);
+		return Iterator(arr - 1);
 	}
 
 
@@ -743,6 +760,7 @@ int main()
 		cout << "10. Print" << endl;
 		cout << "11. Print through Iterator" << endl;
 		cout << "12. Print through Reverse Iterator" << endl;
+		cout << "13. Change through Iterator" << endl;
 
 		int choose;
 		cout << "Enter Choice or -1 to exit: ";
@@ -838,11 +856,33 @@ int main()
 				{
 					cout << "Array through Reverse Iterator:";
 					cout << "\n";
-					for (growarray<int>::ReverseIterator i = a.rbegin(); i != a.rend(); i++)
+					for (growarray<int>::Iterator i = a.rbegin(); i != a.rend(); i--)
 					{
 						cout << *i << " ";
 					}
 					cout << "\n";
+				}
+				else if (choose == 13)
+				{
+					cout << "Enter Index to change through Iterator: ";
+					int index;
+				xy:
+					cin >> index;
+					if (index >= a.getsize())
+					{
+						cout << "Index out of range" << endl;
+						cout << "Enter Again: ";
+						goto xy;
+					}
+					growarray<int>::Iterator i = a.begin();
+					for (int j = 0; j < index; j++)
+					{
+						i++;
+					}
+					cout << "Enter Value to change: ";
+					int value;
+					cin >> value;
+					*i = value;
 				}
 				else
 				{
