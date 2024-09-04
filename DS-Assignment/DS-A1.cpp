@@ -406,8 +406,6 @@ public:
 		}
 		throw exception("Value not found");
 	}
-
-
 	void print()
 	{
 		for (int i = 0; i < count; i++)
@@ -417,7 +415,7 @@ public:
 		cout << endl;
 	}
 
-	
+
 
 
 	class Iterator
@@ -430,6 +428,7 @@ public:
 			this->ptr = ptr;
 		}
 	public:
+		friend class growarray;
 
 		Iterator& operator++()
 		{
@@ -470,6 +469,7 @@ public:
 			this->ptr = ptr;
 		}
 	public:
+		friend class growarray;
 		ReverseIterator& operator++()
 		{
 			ptr--;
@@ -491,6 +491,10 @@ public:
 		bool operator!=(const ReverseIterator& other)
 		{
 			return !(this->ptr == other.ptr);
+		}
+		G& operator*()
+		{
+			return *ptr;
 		}
 	};
 
@@ -615,7 +619,6 @@ int main()
 	int choice;
 	cin >> choice;
 	if (choice == 1)
-
 	{
 
 		staticarray<int> a(5);
@@ -738,6 +741,8 @@ int main()
 		cout << "8. Delete at any position" << endl;
 		cout << "9. Search" << endl;
 		cout << "10. Print" << endl;
+		cout << "11. Print through Iterator" << endl;
+		cout << "12. Print through Reverse Iterator" << endl;
 
 		int choose;
 		cout << "Enter Choice or -1 to exit: ";
@@ -782,49 +787,67 @@ int main()
 					a.insertatanyposition(index, value);
 					a.print();
 				}
+				else if (choose == 5)
+				{
+					a.deleteatfirst();
+					a.print();
+				}
+				else if (choose == 6)
+				{
+					a.deleteatlast();
+					a.print();
+				}
+				else if (choose == 7)
+				{
+					a.deleteatmiddle();
+					a.print();
+				}
+				else if (choose == 8)
+				{
+					int index;
+					cout << "Enter Index: ";
+					cin >> index;
+					a.deleteatanyposition(index);
+					a.print();
+				}
+				else if (choose == 9)
+				{
+					int value;
+					cout << "Enter value to search: ";
+					cin >> value;
+					cout << "Value found at index: ";
+					cout << a.search(value) << endl;
+				}
+				else if (choose == 10)
+				{
+					cout << "\nArray: \n";
+					a.print();
+					cout << endl;
+				}
+				else if (choose == 11)
+				{
+					cout << "Array through Iterator:";
+					cout << "\n";
+					for (growarray<int>::Iterator i = a.begin(); i != a.end(); i++)
+					{
+						cout << *i << " ";
+					}
+					cout << "\n";
+				}
+				else if (choose == 12)
+				{
+					cout << "Array through Reverse Iterator:";
+					cout << "\n";
+					for (growarray<int>::ReverseIterator i = a.rbegin(); i != a.rend(); i++)
+					{
+						cout << *i << " ";
+					}
+					cout << "\n";
+				}
 				else
-					if (choose == 5)
-					{
-						a.deleteatfirst();
-						a.print();
-					}
-					else if (choose == 6)
-					{
-						a.deleteatlast();
-						a.print();
-					}
-					else if (choose == 7)
-					{
-						a.deleteatmiddle();
-						a.print();
-					}
-					else if (choose == 8)
-					{
-						int index;
-						cout << "Enter Index: ";
-						cin >> index;
-						a.deleteatanyposition(index);
-						a.print();
-					}
-					else if (choose == 9)
-					{
-						int value;
-						cout << "Enter value to search: ";
-						cin >> value;
-						cout << "Value found at index: ";
-						cout << a.search(value) << endl;
-					}
-					else
-						if (choose == 10)
-						{
-							cout << "\nArray: \n";
-							a.print();
-							cout << endl;
-						}
-						else
-						{
-							cout << "Invalid Choice" << endl;
-						}
+				{
+					cout << "Invalid Choice" << endl;
+				}
 			}
 			catch (const exception& e)
 			{
