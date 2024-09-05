@@ -22,6 +22,34 @@ public:
 		arr = new T[size]{};
 		this->count = 0;
 	}
+
+	staticarray(const staticarray& A)
+	{
+		size = A.size;
+		count = A.count;
+		arr = new T[size]{};
+		for (int i = 0; i < count; i++)
+		{
+			arr[i] = A.arr[i];
+		}
+	}
+
+	staticarray operator=(const staticarray& A)
+	{
+		if (this != &A)
+		{
+			delete[] arr;
+			size = A.size;
+			count = A.count;
+			arr = new T[size]{};
+			for (int i = 0; i < count; i++)
+			{
+				arr[i] = A.arr[i];
+			}
+		}
+		return *this;
+	}
+
 	~staticarray()
 	{
 		delete[] arr;
@@ -208,6 +236,35 @@ public:
 		arr = new G[size]{};
 		this->count = 0;
 	}
+
+	growarray(const growarray& A)
+	{
+		size = A.size;
+		count = A.count;
+		arr = new G[size]{};
+		for (int i = 0; i < count; i++)
+		{
+			arr[i] = A.arr[i];
+		}
+	}
+
+	growarray operator=(const growarray& A)
+	{
+		if (this != &A)
+		{
+			delete[] arr;
+			size = A.size;
+			count = A.count;
+			arr = new G[size]{};
+			for (int i = 0; i < count; i++)
+			{
+				arr[i] = A.arr[i];
+			}
+		}
+		return *this;
+	}
+
+
 	~growarray()
 	{
 		delete[] arr;
@@ -572,6 +629,34 @@ public:
 		this->capacity = 1;
 		arr = new D[capacity]{};
 	}
+
+	Vector(const Vector& Other)
+	{
+		size = Other.size;
+		capacity = Other.capacity;
+		arr = new D[capacity]{};
+		for (size_t i = 0; i < size; i++)
+		{
+			arr[i] = Other.arr[i];
+		}
+	}
+
+	Vector operator=(const Vector& Other)
+	{
+		if (this != &Other)
+		{
+			delete[] arr;
+			size = Other.size;
+			capacity = Other.capacity;
+			arr = new D[capacity]{};
+			for (size_t i = 0; i < size; i++)
+			{
+				arr[i] = Other.arr[i];
+			}
+		}
+		return *this;
+	}
+
 	~Vector()
 	{
 		delete[] arr;
