@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include<vector>
 using namespace std;
- using namespace std::chrono;
+using namespace std::chrono;
 
 
 template <typename T>
@@ -55,6 +55,7 @@ public:
 	{
 		delete[] arr;
 	}
+
 	void insertatfirst(T value)
 	{
 		if (size <= count)
@@ -78,6 +79,7 @@ public:
 					count++;
 				}
 	}
+
 	void insertatlast(T value)
 	{
 		if (size == count)
@@ -91,6 +93,7 @@ public:
 				count++;
 			}
 	}
+
 	void insertatmiddle(T value)
 	{
 		if (size == count)
@@ -110,6 +113,7 @@ public:
 				count++;
 			}
 	}
+
 	void insertatanyposition(int index, T value)
 	{
 		if (size == count)
@@ -131,6 +135,7 @@ public:
 				count++;
 			}
 	}
+
 	void deleteatfirst()
 	{
 		if (count == 0)
@@ -147,6 +152,7 @@ public:
 				count--;
 			}
 	}
+
 	void deleteatlast()
 	{
 		if (count == 0)
@@ -160,6 +166,7 @@ public:
 				count--;
 			}
 	}
+
 	void deleteatmiddle()
 	{
 		if (count == 0)
@@ -179,6 +186,7 @@ public:
 				count--;
 			}
 	}
+
 	void deleteatanyposition(int index)
 	{
 		if (count == 0)
@@ -199,6 +207,7 @@ public:
 				count--;
 			}
 	}
+
 	void print()
 	{
 		for (int i = 0; i < count; i++)
@@ -207,6 +216,7 @@ public:
 		}
 		cout << endl;
 	}
+
 	T search(T value)
 	{
 
@@ -265,11 +275,11 @@ public:
 		return *this;
 	}
 
-
 	~growarray()
 	{
 		delete[] arr;
 	}
+
 	void insertatfirst(G value)
 	{
 		if (count >= size)
@@ -302,6 +312,7 @@ public:
 				}
 
 	}
+
 	void insertatlast(G value)
 	{
 		if (count >= size)
@@ -322,6 +333,7 @@ public:
 			count++;
 		}
 	}
+
 	void insertatmiddle(G value)
 	{
 		if (count >= size)
@@ -358,6 +370,7 @@ public:
 				count++;
 			}
 	}
+
 	void insertatanyposition(int index, G value)
 	{
 		if (count >= size)
@@ -391,6 +404,7 @@ public:
 				count++;
 			}
 	}
+
 	void deleteatfirst()
 	{
 		if (count == 0)
@@ -407,6 +421,7 @@ public:
 		}
 
 	}
+
 	void deleteatlast()
 	{
 		if (count == 0)
@@ -419,6 +434,7 @@ public:
 			count--;
 		}
 	}
+
 	void deleteatmiddle()
 	{
 		if (count == 0)
@@ -436,6 +452,7 @@ public:
 			count--;
 		}
 	}
+
 	void deleteatanyposition(int index)
 	{
 		if (count == 0)
@@ -455,6 +472,7 @@ public:
 			count--;
 		}
 	}
+
 	G search(G value)
 	{
 
@@ -467,10 +485,12 @@ public:
 		}
 		throw exception("Value not found");
 	}
+
 	int getsize()
 	{
 		return size;
 	}
+
 	void print()
 	{
 		for (int i = 0; i < count; i++)
@@ -479,8 +499,6 @@ public:
 		}
 		cout << endl;
 	}
-
-
 
 
 	class Iterator
@@ -500,6 +518,7 @@ public:
 			ptr++;
 			return *this;
 		}
+
 		const Iterator operator++(int)
 		{
 			Iterator temp = *this;
@@ -519,7 +538,6 @@ public:
 			ptr--;
 			return temp;
 		}
-
 
 		bool operator==(const Iterator& other)
 		{
@@ -575,9 +593,6 @@ public:
 			return *ptr;
 		}
 	};*/
-
-
-
 
 	Iterator begin()
 	{
