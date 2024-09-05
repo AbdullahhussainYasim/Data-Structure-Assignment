@@ -1,7 +1,11 @@
 #include<iostream>
 #include<cmath>
 #include<stdexcept>
+#include <chrono>
+#include <cstdlib>
+#include<vector>
 using namespace std;
+ using namespace std::chrono;
 
 
 template <typename T>
@@ -547,13 +551,13 @@ class Vector
 {
 private:
 	D* arr;
-	int size;
-	int capacity;
+	size_t size;
+	size_t capacity;
 
 	void resize()
 	{
 		D* temp = new D[capacity * 2]{};
-		for (int i = 0; i < size; i++)
+		for (size_t i = 0; i < size; i++)
 		{
 			temp[i] = arr[i];
 		}
@@ -619,10 +623,27 @@ public:
 	}
 
 
-
+	
 
 
 };
+
+
+int loadData(int n)
+{
+	Vector<size_t> a;
+	auto start = high_resolution_clock::now();
+
+	for (size_t i = 0; i < n; i++)
+	{
+		a.insert(rand() % 1000);
+	}
+	auto stop = high_resolution_clock::now();
+
+	auto duration = duration_cast<microseconds>(stop - start);
+	return duration.count();
+}
+
 
 
 
@@ -905,6 +926,7 @@ int main()
 		cout << "2. To get element" << endl;
 		cout << "3. To set element" << endl;
 		cout << "4. Print" << endl;
+		cout << "5. Load Data And Estimation of time" << endl;
 		int choose;
 		cout << "Enter Choice or -1 to exit: ";
 		cin >> choose;
@@ -940,6 +962,25 @@ int main()
 				{
 					cout << a;
 				}
+				else if (choose==5)
+				{
+					int t1 = loadData(10 * 1024 * 1024);
+					cout << "Time taken to load 10MB data: " << t1 << " microseconds" << endl;
+
+					int t2 = loadData(20*1024*1024);
+					cout << "Time taken to load 20MB data: " << t2 << " microseconds" << endl;
+
+					int t3 = loadData(30*1024*1024);
+					cout << "Time taken to load 30MB data: " << t3 << " microseconds" << endl;
+
+					int t4 = loadData(40 * 1024 * 1024);
+					cout << "Time taken to load 40MB data: " << t4 << " microseconds" << endl;
+
+					cout << "Prediction for larger data sizes:" << endl;
+					cout << "Estimated time for loading 1 GB: " << (1024) * loadData(1024 * 1024) << " ms" << endl;
+					cout << "Estimated time for loading 1 TB: " << (1024 * 1024) * loadData(1024 * 1024) << " ms" << endl;
+
+				}
 				else
 				{
 					cout << "Invalid Choice" << endl;
@@ -956,3 +997,6 @@ int main()
 
 	return 0;
 }
+
+
+
