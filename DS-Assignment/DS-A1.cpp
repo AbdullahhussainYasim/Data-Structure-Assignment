@@ -71,9 +71,8 @@ public:
 		else
 			if (size > count)
 			{
-				int mid = size / 2;
+				int mid = count / 2;
 				ceil(mid);
-				mid--;
 				for (int i = count; i > mid; i--)
 				{
 					arr[i] = arr[i - 1];
@@ -658,8 +657,10 @@ int main()
 	cin >> choice;
 	if (choice == 1)
 	{
-
-		staticarray<int> a(5);
+		cout << "Enter Size of Array:";
+		int size;
+		cin >> size;
+		staticarray<int> a(size);
 		cout << "1. Insert at first" << endl;
 		cout << "2. Insert at last" << endl;
 		cout << "3. Insert at middle" << endl;
